@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        大老二遊戲
+        1. inline style( 黑桃 ): 1 0 0 0
+        2. ID 選擇器( 愛心 ): 0 1 0 0
+        3. class 選擇器、屬性選擇器[]、偽類( 方塊 ): 0 0 1 0
+        4. 標籤、偽元素( 梅花 ): 0 0 0 1
+        */
+
+        /* 第一組 */
+        /* 0 1 0 1 */
+        #box1 p {
+            color: green;
+        }
+
+        /* 0 0 1 1 */
+        .box p {
+            color: red;
+            color: blueviolet;
+        }
+
+        /* 0 1 1 2 */
+        /* 第二組 */
+        /* !important相當於鬼牌，可搶走所有優先權，慎用! */
+        #box2 .box h1+p {
+            color: rgb(38, 52, 10) !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .float-left {
+            float: left !important;
+        }
+
+        /* 
+        例子
+        * => 0 0 0 0
+        h1 => 0 0 0 1
+        ul > li => 0 0 0 2
+        li > ol + ol => 0 0 0 3
+        #foo .bar p => 0 0 1 1
+        li.abc.efg => 0 0 2 1
+        */
+
+        /* 
+        第一
+        #sect01 .content .row .col .card a:hover => 0 1 5 1
+
+        第二
+        #sect01 .card a:hover => 0 1 2 1
+
+        第三
+        .card a:hover => 0 0 2 1
+        */
+    </style>
+</head>
+
+<body>
+    <h1>階層權重-為選擇器打分數</h1>
+    <div id="box1">
+        <div class="box">
+            <h1>標題1</h1>
+            <p>
+                Lorem ipsum dolor, sit amet <a href="#"><em>今天是星期三</em></a> consectetur adipisicing elit. Saepe,
+                reprehenderit quisquam ipsam nemo
+                labore, voluptas quis incidunt sapiente aspernatur ullam quo expedita quibusdam atque obcaecati deserunt
+                quod, beatae sequi ipsa.
+            </p>
+        </div>
+    </div>
+
+    <div id="box2">
+        <div class="box">
+            <h1>標題2</h1>
+            <!-- 1 0 0 0 -->
+            <p style="color: blueviolet;">
+                Lorem ipsum dolor, sit amet <a href="#"><em>今天是星期三</em></a> consectetur adipisicing elit. Saepe,
+                reprehenderit quisquam ipsam nemo
+                labore, voluptas quis incidunt sapiente aspernatur ullam quo expedita quibusdam atque obcaecati deserunt
+                quod, beatae sequi ipsa.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
